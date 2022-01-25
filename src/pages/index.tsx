@@ -16,7 +16,6 @@ export default function Home({ title = 'Weather' }: Props) {
       <main>
         <h1>{title}</h1>
       </main>
-
     </div>
   )
 }
