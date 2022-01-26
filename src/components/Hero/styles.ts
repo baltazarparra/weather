@@ -72,6 +72,8 @@ export const WeatherBox = styled.section`
 `
 
 export const WeatherImage = styled.div`
+  display: flex;
+  justify-content: center;
   width: 234px;
 `
 export const WeatherData = styled.div`
