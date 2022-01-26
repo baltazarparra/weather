@@ -13,6 +13,7 @@ html {
 
 body {
   font-family: 'Raleway', sans-serif;
+  background-color: #100E1D;
 }
 `
 

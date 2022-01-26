@@ -1,20 +1,10 @@
-import Head from 'next/head'
+import Hero from 'components/Hero/'
 
-type Props = {
-  title: string
-}
-
-export default function Home({ title = 'Weather' }: Props) {
+export default function Home() {
   return (
     <div>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content="Weather App" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main>
-        <h1>{title}</h1>
+        <Hero />
       </main>
     </div>
   )
