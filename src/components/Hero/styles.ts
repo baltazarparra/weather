@@ -8,7 +8,7 @@ const slide = keyframes`
 
 export const Container = styled.div`
   position: relative;
-  max-width: 460px;
+  max-width: 46rem;
   background-color: #1e213a;
   height: 100vh;
   color: #e7e7eb;
@@ -16,6 +16,10 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 888px) {
+    max-width: 100%;
+  }
 `
 
 export const Main = styled.main`
@@ -24,15 +28,24 @@ export const Main = styled.main`
   justify-content: space-between;
   align-items: center;
   height: 100vh;
-  padding: 42px 0;
+  padding: 4.2rem 0;
   overflow: hidden;
+
+  @media (max-width: 450px) {
+    padding: 2rem 0;
+  }
 `
 
 export const Header = styled.header`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 0 46px;
+  padding: 0 4.6rem;
+
+  @media (max-width: 450px) {
+    padding: 0 1rem;
+    margin-bottom: 4rem;
+  }
 `
 
 export const SearchButton = styled.button`
@@ -44,6 +57,12 @@ export const SearchButton = styled.button`
   background-color: #6e707a;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    box-shadow: 4px 12px 8px rgba(0, 0, 0, 0.5);
+    transform: translateY(-0.2rem);
+  }
 `
 
 export const LocationButton = styled.button`
@@ -70,12 +89,22 @@ export const WeatherBox = styled.section`
   background-size: 120%;
   background-repeat: repeat-x;
   animation: ${slide} 200s linear infinite forwards;
+
+  @media (max-width: 888px) {
+    width: 100vw;
+  }
 `
 
 export const WeatherImage = styled.div`
   display: flex;
   justify-content: center;
-  width: 234px;
+  width: 23.4rem;
+
+  @media (max-width: 450px) {
+    img {
+      width: 14rem;
+    }
+  }
 `
 export const WeatherData = styled.div`
   display: flex;
@@ -133,6 +162,10 @@ export const Search = styled.div`
   background-color: #1e213a;
   padding: 2em 4.6rem 4.6rem;
   text-align: right;
+
+  @media (max-width: 450px) {
+    padding: 2em;
+  }
 `
 
 export const CloseButton = styled.button`
@@ -142,11 +175,21 @@ export const CloseButton = styled.button`
   font-size: 2.8rem;
   cursor: pointer;
   margin-bottom: 4rem;
+  transform-origin: center;
+  transition: 0.3s;
+
+  &:hover {
+    transform: rotate(-90deg);
+  }
 `
 
 export const SearchBox = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 890px) {
+    justify-content: center;
+  }
 `
 
 export const SearchInput = styled.input`
@@ -158,6 +201,11 @@ export const SearchInput = styled.input`
   color: #e7e7eb;
   font-size: 1.6rem;
   border-radius: 0;
+
+  @media (max-width: 890px) {
+    width: 20rem;
+    margin-right: 2rem;
+  }
 
   ::placeholder {
     color: #616475;

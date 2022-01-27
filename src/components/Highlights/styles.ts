@@ -5,11 +5,25 @@ export const Container = styled.div`
   color: #e7e7eb;
   flex-direction: column;
   max-width: 70rem;
+
+  @media (max-width: 1290px) {
+    max-width: inherit;
+    padding: 5.4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 996px) {
+    padding: 0;
+  }
 `
 
 export const Title = styled.h1`
   font-size: 2.4rem;
   font-weight: 700;
+
+  @media (max-width: 450px) {
+    margin-top: 4rem;
+  }
 `
 
 export const HighlightTitle = styled.h1`
@@ -37,6 +51,10 @@ export const Highlights = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+
+  @media (max-width: 1290px) {
+    justify-content: center;
+  }
 `
 
 export const Highlight = styled.li`
@@ -50,5 +68,22 @@ export const Highlight = styled.li`
 
   &:nth-child(odd) {
     margin-right: 4.4rem;
+  }
+
+  @media (max-width: 1290px) {
+    margin: 2rem 4rem;
+
+    &:nth-child(odd) {
+      margin: 2rem 4rem;
+    }
+  }
+
+  @media (max-width: 450px) {
+    width: 26rem;
+    margin: 1rem;
+
+    &:nth-child(odd) {
+      margin: 1rem;
+    }
   }
 `

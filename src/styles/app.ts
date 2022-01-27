@@ -2,6 +2,10 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
+
+  @media (max-width: 888px) {
+    flex-direction: column;
+  }
 `
 
 export const Main = styled.main`
@@ -12,6 +16,11 @@ export const Main = styled.main`
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
+
+  @media (max-width: 888px) {
+    overflow-y: auto;
+    height: auto;
+  }
 `
 
 export const Footer = styled.footer`
