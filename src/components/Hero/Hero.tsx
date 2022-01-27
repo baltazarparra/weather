@@ -1,11 +1,17 @@
+import { useState } from 'react'
+
 import * as S from './styles'
 
 export default function Hero() {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <S.Container>
       <S.Main>
         <S.Header>
-          <S.SearchButton>Search for places</S.SearchButton>
+          <S.SearchButton onClick={() => setIsOpen(true)}>
+            Search for places
+          </S.SearchButton>
           <S.LocationButton>
             <img src="/Location.png" alt="Location icon" />
           </S.LocationButton>
@@ -29,6 +35,15 @@ export default function Hero() {
           </S.Location>
         </S.Footer>
       </S.Main>
+      {isOpen && (
+        <S.Search>
+          <S.CloseButton onClick={() => setIsOpen(false)}>✖</S.CloseButton>
+          <S.SearchBox>
+            <S.SearchInput placeholder="search location" />
+            <S.SearchAction>Search</S.SearchAction>
+          </S.SearchBox>
+        </S.Search>
+      )}
     </S.Container>
   )
 }

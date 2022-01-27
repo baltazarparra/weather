@@ -7,6 +7,7 @@ const slide = keyframes`
 `
 
 export const Container = styled.div`
+  position: relative;
   max-width: 460px;
   background-color: #1e213a;
   height: 100vh;
@@ -120,5 +121,72 @@ export const Location = styled.div`
 
   img {
     margin-right: 1rem;
+  }
+`
+
+export const Search = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #1e213a;
+  padding: 2em 4.6rem 4.6rem;
+  text-align: right;
+`
+
+export const CloseButton = styled.button`
+  background: none;
+  border: none;
+  color: #e7e7eb;
+  font-size: 2.8rem;
+  cursor: pointer;
+  margin-bottom: 4rem;
+`
+
+export const SearchBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+export const SearchInput = styled.input`
+  width: 26.8rem;
+  height: 4.8rem;
+  background: none;
+  border: solid 1px #e7e7eb;
+  padding: 1.4rem;
+  color: #e7e7eb;
+  font-size: 1.6rem;
+  border-radius: 0;
+
+  ::placeholder {
+    color: #616475;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+  }
+`
+
+export const SearchAction = styled.button`
+  width: 8.6rem;
+  border-radius: 0;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 1.6rem;
+  background-color: #3c47e9;
+  color: #e7e7eb;
+  cursor: pointer;
+  border: solid 1px transparent;
+  transition: 0.3s;
+
+  &:hover {
+    border-color: #e7e7eb;
+  }
+
+  &:disabled {
+    border-color: transparent;
+    background-color: #100e1d;
+    color: #616475;
   }
 `
