@@ -93,6 +93,10 @@ export const WeatherBox = styled.section`
   @media (max-width: 888px) {
     width: 100vw;
   }
+
+  @media (max-width: 450px) {
+    justify-content: space-around;
+  }
 `
 
 export const WeatherImage = styled.div`
@@ -121,12 +125,20 @@ export const Temperature = styled.p`
     color: #a09fb1;
     font-weight: 400;
   }
+
+  @media (max-width: 450px) {
+    font-size: 10rem;
+  }
 `
 
 export const TemperatureSubtitle = styled.p`
   font-size: 3.6rem;
   color: #a09fb1;
   font-weight: 600;
+
+  @media (max-width: 450px) {
+    margin-bottom: 4rem;
+  }
 `
 
 export const Footer = styled.footer`
@@ -134,6 +146,10 @@ export const Footer = styled.footer`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 450px) {
+    margin-bottom: 1.2rem;
+  }
 `
 
 export const TodayDate = styled.p`
