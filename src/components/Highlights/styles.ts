@@ -87,3 +87,46 @@ export const Highlight = styled.li`
     }
   }
 `
+
+export const Bar = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.8rem;
+
+  &:after {
+    content: '%';
+    position: absolute;
+    bottom: -1.8rem;
+    right: 0;
+    font-weight: 700;
+    color: #a09fb1;
+    font-size: 1.4rem;
+  }
+`
+
+export const Humidity = styled.div`
+  height: 0.8rem;
+  width: 22rem;
+  background-color: #e7e7eb;
+  border-radius: 8rem;
+
+  span {
+    display: block;
+    background-color: #ffec65;
+    height: inherit;
+    border-radius: 8rem;
+  }
+`
+
+export const Percents = styled.div`
+  display: flex;
+  font-size: 1.2rem;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+  color: #a09fb1;
+`

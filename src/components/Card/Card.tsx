@@ -1,16 +1,26 @@
 import * as S from './styles'
 
-export default function Card() {
+import { CardProps } from './types'
+
+export default function Card({
+  date,
+  iconName,
+  maxTemperature,
+  minTemperature
+}: CardProps) {
   return (
     <>
       <S.Container>
-        <S.Date>Sun, 7 Jun</S.Date>
+        <S.Date>{date}</S.Date>
         <S.WeatherImage>
-          <S.Weather src="/Hail.png" alt="Weather Image" />
+          <S.Weather
+            src={`/${iconName}.png`}
+            alt={`Weather ${iconName} Image`}
+          />
         </S.WeatherImage>
         <S.Temperature>
-          <p>16ºC</p>
-          <p>8ºC</p>
+          <p>{maxTemperature}ºC</p>
+          <p>{minTemperature}ºC</p>
         </S.Temperature>
       </S.Container>
     </>
