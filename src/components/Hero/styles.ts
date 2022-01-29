@@ -10,7 +10,6 @@ export const Container = styled.div`
   position: relative;
   max-width: 46rem;
   background-color: #1e213a;
-  height: 100vh;
   color: #e7e7eb;
   display: flex;
   flex-direction: column;
@@ -41,10 +40,10 @@ export const Header = styled.header`
   width: 100%;
   justify-content: space-between;
   padding: 0 4.6rem;
+  flex: 1;
 
   @media (max-width: 450px) {
     padding: 0 1rem;
-    margin-bottom: 4rem;
   }
 `
 
@@ -54,6 +53,7 @@ export const SearchButton = styled.button`
   color: #e7e7eb;
   font-size: 1.6rem;
   max-width: 170px;
+  height: 4.2rem;
   background-color: #6e707a;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
@@ -83,8 +83,8 @@ export const WeatherBox = styled.section`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 460px;
-  height: 660px;
+  flex: 8;
+  width: 46rem;
   background-image: url('/Cloud-background.png');
   background-size: 120%;
   background-repeat: repeat-x;
@@ -137,7 +137,6 @@ export const TemperatureSubtitle = styled.p`
   font-weight: 600;
 
   @media (max-width: 450px) {
-    margin-bottom: 4rem;
   }
 `
 
@@ -146,9 +145,9 @@ export const Footer = styled.footer`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1;
 
   @media (max-width: 450px) {
-    margin-bottom: 1.2rem;
   }
 `
 
@@ -162,7 +161,7 @@ export const Location = styled.div`
   font-size: 1.8rem;
   font-weight: 600;
   color: #88869d;
-  margin-top: 32px;
+  margin-top: 3rem;
 
   img {
     margin-right: 1rem;
