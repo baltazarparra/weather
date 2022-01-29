@@ -6,7 +6,7 @@ const mock = {
   consolidated_weather: [
     {
       id: 0,
-      weather_state_name: 'Snow',
+      weather_state_name: 'Loading...',
       wind_direction_compass: 'Wind',
       applicable_date: new Date().toISOString().slice(0, 10),
       min_temp: 0,
@@ -19,7 +19,7 @@ const mock = {
     }
   ],
   time: new Date().toISOString().slice(0, 10),
-  title: 'City',
+  title: 'wait inicital data...',
   woeid: 44418
 }
 

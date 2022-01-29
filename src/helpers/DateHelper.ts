@@ -3,6 +3,6 @@ export function parseDate(date: string) {
     weekday: 'short',
     day: 'numeric',
     month: 'short',
-    timeZone: 'UTC'
+    timeZone: 'GMT'
   })
 }

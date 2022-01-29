@@ -24,7 +24,7 @@ export const Container = styled.div`
 export const Main = styled.main`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
   padding: 4.2rem 0;
@@ -40,7 +40,6 @@ export const Header = styled.header`
   width: 100%;
   justify-content: space-between;
   padding: 0 4.6rem;
-  flex: 1;
 
   @media (max-width: 450px) {
     padding: 0 1rem;
@@ -83,12 +82,13 @@ export const WeatherBox = styled.section`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  flex: 8;
   width: 46rem;
+  padding-top: 4rem;
   background-image: url('/Cloud-background.png');
   background-size: 120%;
   background-repeat: repeat-x;
   animation: ${slide} 200s linear infinite forwards;
+  flex: 1;
 
   @media (max-width: 888px) {
     width: 100vw;
@@ -97,6 +97,11 @@ export const WeatherBox = styled.section`
   @media (max-width: 450px) {
     justify-content: space-around;
   }
+
+  @media (min-height: 768px) {
+    flex-grow: 3;
+    padding-top: 8rem;
+  }
 `
 
 export const WeatherImage = styled.div`
@@ -104,9 +109,14 @@ export const WeatherImage = styled.div`
   justify-content: center;
   width: 23.4rem;
 
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
   @media (max-width: 450px) {
     img {
-      width: 14rem;
+      max-width: 12rem;
     }
   }
 `
@@ -135,6 +145,7 @@ export const TemperatureSubtitle = styled.p`
   font-size: 3.6rem;
   color: #a09fb1;
   font-weight: 600;
+  padding: 2rem 4rem;
 
   @media (max-width: 450px) {
   }
@@ -147,7 +158,8 @@ export const Footer = styled.footer`
   justify-content: center;
   flex: 1;
 
-  @media (max-width: 450px) {
+  @media (min-height: 768px) {
+    justify-content: flex-end;
   }
 `
 
@@ -298,4 +310,9 @@ export const LocationItem = styled.li`
   &:hover {
     border-color: #616475;
   }
+`
+
+export const Warning = styled.p`
+  font-size: 2rem;
+  text-align: left;
 `

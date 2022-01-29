@@ -1,27 +1,39 @@
 import { useState, useEffect, useContext } from 'react'
 
 import { WeatherContext } from 'contexts/WeatherContext'
-
 import API from 'services/API'
-
 import { parseDate } from 'helpers/DateHelper'
-
 import { WeatherProps } from './types'
 import * as S from './styles'
 
 export default function Hero() {
-  const [isOpen, setIsOpen] = useState(false)
-
   const [weatherProps, setWeatherProps] = useState<WeatherProps>()
-  const [inputValue, setInputValue] = useState<string>('')
-  const [searchTerm, setSearchTerm] = useState<string>('')
+  const [isOpen, setIsOpen] = useState(false)
+  const [inputValue, setInputValue] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
   const [locations, setLocations] = useState([])
   const [location, setLocation] = useState('')
+  const [lattlong, setLattlong] = useState('')
+  const [empty, setEmpty] = useState(false)
+  const [error, setError] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [hasGeo, setHasGeo] = useState(false)
+
   const { weather, addWeather } = useContext(WeatherContext)
 
   useEffect(() => {
-    const todayWeatherData = weather.consolidated_weather[0]
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        setHasGeo(true)
+        setLattlong(`${position.coords.latitude},${position.coords.longitude}`)
+      })
+    } else {
+      setHasGeo(false)
+    }
+  }, [])
 
+  useEffect(() => {
+    const todayWeatherData = weather.consolidated_weather[0]
     setWeatherProps({
       city: weather.title,
       todayDate: parseDate(weather.time),
@@ -33,24 +45,62 @@ export default function Hero() {
 
   useEffect(() => {
     if (searchTerm) {
-      API.get(`/location/search/?query=${searchTerm}`).then((res) =>
-        setLocations(res.data)
-      )
+      API.get(`/location/search/?query=${searchTerm}`)
+        .then((res) => {
+          setLocations(res.data)
+          if (res.data < 1) {
+            setEmpty(true)
+          }
+        })
+        .catch(() => setError(true))
+        .finally(() => {
+          setIsLoading(false)
+        })
     }
   }, [searchTerm])
 
   useEffect(() => {
+    handleLocation()
+  }, [lattlong])
+
+  useEffect(() => {
     if (location) {
-      API.get(`/location/${location}`).then((res) => {
-        addWeather(res.data)
-      })
-      setIsOpen(false)
+      API.get(`/location/${location}`)
+        .then((res) => {
+          addWeather(res.data)
+          if (res.data === weather) console.log('ok')
+        })
+        .catch(() => setError(true))
+        .finally(() => {
+          setIsLoading(false)
+          setIsOpen(false)
+        })
     }
   }, [location])
 
+  useEffect(() => {
+    if (!isOpen) {
+      setLocations([])
+      setIsLoading(false)
+    }
+  }, [isOpen])
+
   const handleSearch = () => {
     setSearchTerm(inputValue)
+    setEmpty(false)
+    if (inputValue) setIsLoading(true)
   }
+
+  const handleLocation = () => {
+    if (lattlong) {
+      API.get(`/location/search/?lattlong=${lattlong}`).then((res) =>
+        setLocation(res.data[0].woeid)
+      )
+    }
+  }
+
+  const weatherImage =
+    isLoading || !location ? '/Loader.gif' : weatherProps?.iconSrc
 
   return (
     <S.Container>
@@ -59,13 +109,15 @@ export default function Hero() {
           <S.SearchButton onClick={() => setIsOpen(true)}>
             Search for places
           </S.SearchButton>
-          <S.LocationButton>
-            <img src="/Location.png" alt="Location icon" />
-          </S.LocationButton>
+          {hasGeo && (
+            <S.LocationButton onClick={() => handleLocation()}>
+              <img src="/Location.png" alt="Location icon" />
+            </S.LocationButton>
+          )}
         </S.Header>
         <S.WeatherBox>
           <S.WeatherImage>
-            <img src={weatherProps?.iconSrc} alt="Weather Image" />
+            <img src={weatherImage && weatherImage} alt="Weather Image" />
           </S.WeatherImage>
           <S.WeatherData>
             <S.Temperature>
@@ -74,7 +126,9 @@ export default function Hero() {
             </S.Temperature>
           </S.WeatherData>
           <S.TemperatureSubtitle>
-            {weatherProps?.weatherStatus}
+            {location
+              ? weatherProps?.weatherStatus
+              : 'allow location on device or search for a place'}
           </S.TemperatureSubtitle>
         </S.WeatherBox>
         <S.Footer>
@@ -94,18 +148,26 @@ export default function Hero() {
               placeholder="search location"
             />
             <S.SearchAction onClick={() => handleSearch()}>
-              Search
+              {isLoading ? 'Loading...' : 'Search'}
             </S.SearchAction>
           </S.SearchBox>
           {locations && (
             <S.LocationList>
               {locations.map(({ woeid, title }) => (
-                <S.LocationItem key={woeid} onClick={() => setLocation(woeid)}>
+                <S.LocationItem
+                  key={woeid}
+                  onClick={() => {
+                    setIsLoading(true)
+                    setLocation(woeid)
+                  }}
+                >
                   {title}
                 </S.LocationItem>
               ))}
             </S.LocationList>
           )}
+          {empty && <S.Warning>location not available</S.Warning>}
+          {error && <S.Warning>Sorry, we couldnt get responses</S.Warning>}
         </S.Search>
       )}
     </S.Container>
