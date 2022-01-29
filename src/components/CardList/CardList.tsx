@@ -15,16 +15,17 @@ export default function CardList() {
     <S.Container>
       <S.Degrees>ºC</S.Degrees>
       <S.List>
-        {weeklyWeather.map((day) => (
-          <S.Item key={day.id}>
-            <Card
-              date={parseDate(day.applicable_date)}
-              iconName={day.weather_state_name.replace(/ /g, '')}
-              maxTemperature={parseInt(day.max_temp.toString())}
-              minTemperature={parseInt(day.min_temp.toString())}
-            />
-          </S.Item>
-        ))}
+        {weeklyWeather &&
+          weeklyWeather.map((day) => (
+            <S.Item key={day.id}>
+              <Card
+                date={parseDate(day.applicable_date)}
+                iconName={day.weather_state_name.replace(/ /g, '')}
+                maxTemperature={parseInt(day.max_temp.toString())}
+                minTemperature={parseInt(day.min_temp.toString())}
+              />
+            </S.Item>
+          ))}
       </S.List>
     </S.Container>
   )

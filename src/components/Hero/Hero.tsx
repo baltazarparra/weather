@@ -11,10 +11,12 @@ import * as S from './styles'
 
 export default function Hero() {
   const [isOpen, setIsOpen] = useState(false)
+
   const [weatherProps, setWeatherProps] = useState<WeatherProps>()
   const [inputValue, setInputValue] = useState<string>('')
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const [location, setLocation] = useState<string>('')
+  const [locations, setLocations] = useState([])
+  const [location, setLocation] = useState('')
   const { weather, addWeather } = useContext(WeatherContext)
 
   useEffect(() => {
@@ -32,7 +34,7 @@ export default function Hero() {
   useEffect(() => {
     if (searchTerm) {
       API.get(`/location/search/?query=${searchTerm}`).then((res) =>
-        setLocation(res.data[0].woeid)
+        setLocations(res.data)
       )
     }
   }, [searchTerm])
@@ -95,6 +97,15 @@ export default function Hero() {
               Search
             </S.SearchAction>
           </S.SearchBox>
+          {locations && (
+            <S.LocationList>
+              {locations.map(({ woeid, title }) => (
+                <S.LocationItem key={woeid} onClick={() => setLocation(woeid)}>
+                  {title}
+                </S.LocationItem>
+              ))}
+            </S.LocationList>
+          )}
         </S.Search>
       )}
     </S.Container>

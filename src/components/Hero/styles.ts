@@ -177,6 +177,7 @@ export const Search = styled.div`
   background-color: #1e213a;
   padding: 2em 4.6rem 4.6rem;
   text-align: right;
+  overflow-y: auto;
 
   @media (max-width: 450px) {
     padding: 2em;
@@ -208,7 +209,7 @@ export const SearchBox = styled.div`
 `
 
 export const SearchInput = styled.input`
-  width: 26.8rem;
+  width: 20.8rem;
   height: 4.8rem;
   background: none;
   border: solid 1px #e7e7eb;
@@ -231,7 +232,7 @@ export const SearchInput = styled.input`
 `
 
 export const SearchAction = styled.button`
-  width: 8.6rem;
+  padding: 0 1rem;
   border-radius: 0;
   border: none;
   font-family: 'Raleway', sans-serif;
@@ -251,5 +252,50 @@ export const SearchAction = styled.button`
     border-color: transparent;
     background-color: #100e1d;
     color: #616475;
+  }
+`
+
+export const Error = styled.div`
+  color: red;
+  margin: 2rem 1rem;
+  font-size: 1.6rem;
+  text-align: center;
+`
+export const LocationList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  align-items: flex-start;
+  margin: 2rem 0;
+`
+export const LocationItem = styled.li`
+  position: relative;
+  width: 100%;
+  padding: 2rem 1rem;
+  margin: 1rem 0;
+  background: none;
+  border: solid 1px transparent;
+  color: #e7e7eb;
+  font-size: 1.6rem;
+  transition: 0.3s;
+  text-align: left;
+  cursor: pointer;
+
+  &:after {
+    content: '›';
+    position: absolute;
+    font-size: 2.6rem;
+    top: 1.2rem;
+    right: 1.4rem;
+    color: transparent;
+    transition: 0.3s;
+  }
+
+  &:hover::after {
+    color: #616475;
+  }
+
+  &:hover {
+    border-color: #616475;
   }
 `

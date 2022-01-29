@@ -33,3 +33,7 @@ yarn dev
 ## Live App
 
 https://weatherlive.vercel.app/
+
+### Kanban for project management
+
+https://github.com/baltazarparra/weather/projects/1
